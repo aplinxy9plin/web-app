@@ -1,9 +1,9 @@
-import React from "react";
+import React from 'react';
 import {
   BrowserRouter as Router,
   Switch,
-  Route
-} from "react-router-dom";
+  Route,
+} from 'react-router-dom';
 
 // screens
 import Home from './screens/Home/Home';
@@ -12,14 +12,21 @@ import Home from './screens/Home/Home';
 import Navbar from './components/Navbar/Navbar';
 
 export class App extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+
+    };
+  }
+
   render() {
     return (
       <Router>
         <div>
-          <Navbar 
+          <Navbar
             links={
               [
-                { link: "/", name: "Домой"},
+                { link: '/', name: 'Домой' },
               ]
             }
           />
@@ -30,7 +37,7 @@ export class App extends React.Component {
           </Switch>
         </div>
       </Router>
-    )
+    );
   }
 }
 

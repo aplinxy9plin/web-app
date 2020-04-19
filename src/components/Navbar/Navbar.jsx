@@ -1,16 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import PropTypes from 'prop-types'
+import PropTypes from 'prop-types';
 
 const Navbar = ({ links }) => (
   <nav>
     <ul>
       {
-        links.map((item) => 
-          <li>
+        links.map((item) => (
+          <li key={item.link}>
             <Link to={item.link}>{item.name}</Link>
           </li>
-        )
+        ))
       }
     </ul>
   </nav>
@@ -20,7 +20,7 @@ Navbar.propTypes = {
   links: PropTypes.arrayOf(PropTypes.shape({
     link: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
-  })).isRequired,   
+  })).isRequired,
 };
 
 export default Navbar;

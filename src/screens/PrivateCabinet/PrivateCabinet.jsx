@@ -58,17 +58,14 @@ export class PrivateCabinet extends Component {
                 <Menu.Item
                   name="Мой профиль"
                   active={activeTab === 'profile'}
-                  onClick={() => this.setState({ activeTab: 'profile' })}
                 />
                 <Menu.Item
                   name="История"
                   active={activeTab === 'history'}
-                  onClick={() => this.setState({ activeTab: 'history' })}
                 />
                 <Menu.Item
                   name="Адрес"
                   active={activeTab === 'address'}
-                  onClick={() => this.setState({ activeTab: 'address' })}
                 />
                 <Menu.Item
                   name="Избранные"

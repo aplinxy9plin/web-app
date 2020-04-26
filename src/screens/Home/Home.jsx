@@ -32,7 +32,7 @@ export class Home extends Component {
         <Map />
         <Grid style={{ marginTop: '30px' }}>
           <Header as="h1">Фермеры</Header>
-          <Grid.Row widths={12}>
+          <Grid.Row widths={12} style={{ minHeight: '300px' }}>
             <Grid.Column width={4}>
               <Card>
                 <Image src={people1} wrapped ui={false} />
@@ -44,7 +44,7 @@ export class Home extends Component {
                 </Card.Content>
               </Card>
             </Grid.Column>
-            <Grid.Column width={4}>
+            <Grid.Column width={4} style={{ minHeight: '300px' }}>
               <Card>
                 <Image src={people2} wrapped ui={false} />
                 <Card.Content>
@@ -55,7 +55,7 @@ export class Home extends Component {
                 </Card.Content>
               </Card>
             </Grid.Column>
-            <Grid.Column width={4}>
+            <Grid.Column width={4} style={{ minHeight: '300px' }}>
               <Card>
                 <Image src={people3} wrapped ui={false} />
                 <Card.Content>
@@ -66,7 +66,7 @@ export class Home extends Component {
                 </Card.Content>
               </Card>
             </Grid.Column>
-            <Grid.Column width={4}>
+            <Grid.Column width={4} style={{ minHeight: '300px' }}>
               <Card>
                 <Image src={people4} wrapped ui={false} />
                 <Card.Content>
@@ -79,6 +79,10 @@ export class Home extends Component {
             </Grid.Column>
           </Grid.Row>
         </Grid>
+        <footer style={{ marginTop: '30px', paddingBottom: '30px' }}>
+          <hr />
+          <p>Created by GroFor with {'<3'}</p>
+        </footer>
       </Container>
     );
   }

@@ -27,7 +27,7 @@ class GoogleMapComponent extends Component {
       redirect: 'follow',
     };
 
-    fetch('https://cf931bb1.ngrok.io/get_label', requestOptions)
+    fetch('https://cors-anywhere.herokuapp.com/https://cf931bb1.ngrok.io/get_label', requestOptions)
       .then((response) => response.json())
       .then((result) => {
         this.setState({ result });

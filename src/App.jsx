@@ -32,8 +32,8 @@ export class App extends React.Component {
             links={
               [
                 { link: '/map', name: 'Карта' },
-                { link: '/map', name: 'Магазин' },
-                { link: '/map', name: 'Форум' },
+                { link: '/map?1', name: 'Магазин' },
+                { link: '/map?2', name: 'Форум' },
               ]
             }
           />

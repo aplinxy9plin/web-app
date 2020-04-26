@@ -23,7 +23,7 @@ const Sidebar = () => {
       redirect: 'follow',
     };
 
-    fetch('https://cors-anywhere.herokuapp.com/https://f9d0228e.ngrok.io/get_label', requestOptions)
+    fetch('https://cors-anywhere.herokuapp.com/'https://cors-anywhere.herokuapp.com/https://f9d0228e.ngrok.io/get_label', requestOptions)
       .then((response) => response.json())
       .then((result) => {
         setstate(result);

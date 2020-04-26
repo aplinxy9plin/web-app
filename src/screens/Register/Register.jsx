@@ -85,7 +85,7 @@ class Register extends Component {
       redirect: 'follow',
     };
 
-    fetch('https://f9d0228e.ngrok.io/registration', requestOptions)
+    fetch(''https://cors-anywhere.herokuapp.com/https://f9d0228e.ngrok.io/registration', requestOptions)
       .then((response) => response.json())
       .then((result) => {
         if (result.messageError) {

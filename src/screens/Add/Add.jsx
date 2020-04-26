@@ -76,7 +76,7 @@ class Add extends Component {
       body: raw,
     };
 
-    fetch('https://f9d0228e.ngrok.io/grow', requestOptions)
+    fetch(''https://cors-anywhere.herokuapp.com/https://f9d0228e.ngrok.io/grow', requestOptions)
       .then((response) => response.json())
       .then((result) => {
         if(result.messageSuccess) {

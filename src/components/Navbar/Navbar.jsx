@@ -53,14 +53,16 @@ const Navbar = ({ links }) => {
           }
         </Menu.Item>
         {
-          localStorage.getItem('grofor_auth')
+          localStorage.getItem('grofor_token')
             ? (
               <Menu.Item position="right">
-                Profile
+                <Link to="/basket" style={{ marginRight: '25px' }}>Корзина</Link>
+                <Link to="/profile">Профиль</Link>
               </Menu.Item>
             )
             : (
               <Menu.Item>
+                <Link to="/basket" style={{ marginRight: '25px' }}>Корзина</Link>
                 <Link to="/login">Войти</Link>
               </Menu.Item>
             )

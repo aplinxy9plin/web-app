@@ -7,12 +7,25 @@ import templateGreen from '../../assets/template-green.png';
 // eslint-disable-next-line import/no-cycle
 import ItemModal from '../ItemModal/ItemModal';
 
-const Item = ({ modal }) => {
+const Item = ({ modal, item, add }) => {
   const [openItem, setOpenItem] = useState(false);
+  console.log(item.photo);
   return (
     <div
       onKeyDown={() => setOpenItem(true)}
-      onClick={() => setOpenItem(true)}
+      onClick={(e) => {
+        if (e.target.id === 'addBasket') {
+          if (!localStorage.getItem('grofor_basket')) {
+            localStorage.setItem('grofor_basket', JSON.stringify([item]));
+          } else {
+            const basket = JSON.parse(localStorage.getItem('grofor_basket'));
+            basket.push(item);
+            localStorage.setItem('grofor_basket', JSON.stringify(basket));
+          }
+        } else {
+          setOpenItem(true);
+        }
+      }}
       tabIndex={0}
       role="button"
     >
@@ -21,13 +34,13 @@ const Item = ({ modal }) => {
           <Grid fluid>
             <Grid.Row>
               <Grid.Column width={4} style={{ marginLeft: '30px' }}>
-                <Image src={templateGreen} style={{ borderRadius: '10px' }} />
+                <Image src={(item.photo && item.photo !== 'base64') ? item.photo : templateGreen} style={{ borderRadius: '10px' }} />
               </Grid.Column>
               <Grid.Column width={11}>
                 <Grid fluid>
                   <Grid.Row>
                     <Grid.Column width={11}>
-                      <Header as="h1">Pea Shoots</Header>
+                      <Header as="h1">{item.name}</Header>
                     </Grid.Column>
                     <Grid.Column width={3}>
                       <Header as="h1">
@@ -36,28 +49,50 @@ const Item = ({ modal }) => {
                     </Grid.Column>
                   </Grid.Row>
                 </Grid>
-                <Header as="h4" style={{ lineHeight: 0 }}>A. Smith</Header>
-                <p>Tasty, healthy beet leaves, similar in taste and use tspinach...</p>
+                <Header as="h4" style={{ lineHeight: 0 }}>{`${item.firstname} ${item.lastname}`}</Header>
+                <p>
+                  Метод:
+                  {item.method}
+                  {' '}
+                  <br />
+                  Тип:
+                  {' '}
+                  {item.type}
+                </p>
                 <Grid verticalAlign="middle">
                   <Grid.Row>
                     <Grid.Column width={11}>
                       <Segment secondary style={{ padding: 7 }}>
                         <center>
                           <Header as="h3">
-                            <b>3,50 $ - </b>
-                            0,1kg
+                            <b>
+                              {item.price}
+                              {' '}
+                              {item.currency}
+                              {' '}
+                              -
+                              {' '}
+                            </b>
+                            1
+                            {' '}
+                            {item.unit}
                           </Header>
                         </center>
                       </Segment>
                     </Grid.Column>
-                    <Grid.Column width={3}>
-                      <Button
-                        color="green"
-                        style={{ fontSize: '1.1em' }}
-                      >
-                        +
-                      </Button>
-                    </Grid.Column>
+                    {
+                      !add && (
+                      <Grid.Column width={3}>
+                        <Button
+                          color="green"
+                          style={{ fontSize: '1.1em' }}
+                          id="addBasket"
+                        >
+                          +
+                        </Button>
+                      </Grid.Column>
+                      )
+                    }
                   </Grid.Row>
                 </Grid>
               </Grid.Column>
@@ -69,6 +104,7 @@ const Item = ({ modal }) => {
       {
         modal && (
           <ItemModal
+            item={item}
             open={openItem}
             closeItem={() => setOpenItem(false)}
           />
@@ -80,6 +116,8 @@ const Item = ({ modal }) => {
 
 Item.propTypes = {
   modal: PropTypes.bool.isRequired,
+  item: PropTypes.object,
+  add: PropTypes.bool,
 };
 
 export default Item;

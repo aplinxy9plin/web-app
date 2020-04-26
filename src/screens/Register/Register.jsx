@@ -18,7 +18,7 @@ class Register extends Component {
 
   maps = (e) => {
     const searchQuery = e.currentTarget.value;
-    this.setState({ isLoading: true });
+    this.setState({ isLoading: true, value: searchQuery });
     setTimeout(() => {
       const api = `https://geocode-maps.yandex.ru/1.x/?apikey=392a8d0f-e740-49a2-b017-64fe651c0e1a&format=json&geocode=${searchQuery}`;
       fetch(api)
@@ -29,6 +29,9 @@ class Register extends Component {
             list: data.response.GeoObjectCollection.featureMember.map((item) => ({
               lng: item.GeoObject.Point.pos.split(' ')[0],
               lat: item.GeoObject.Point.pos.split(' ')[1],
+              country: (item.GeoObject.metaDataProperty.GeocoderMetaData.Address.Components.filter((a) => a.kind === 'country')[0] ? item.GeoObject.metaDataProperty.GeocoderMetaData.Address.Components.filter((a) => a.kind === 'country')[0].name : ''),
+              city: (item.GeoObject.metaDataProperty.GeocoderMetaData.Address.Components.filter((a) => a.kind === 'locality')[0] ? item.GeoObject.metaDataProperty.GeocoderMetaData.Address.Components.filter((a) => a.kind === 'locality')[0].name : ''),
+              address: (item.GeoObject.metaDataProperty.GeocoderMetaData.Address.Components.filter((a) => a.kind === 'street')[0] ? item.GeoObject.metaDataProperty.GeocoderMetaData.Address.Components.filter((a) => a.kind === 'street')[0].name : '') + (item.GeoObject.metaDataProperty.GeocoderMetaData.Address.Components.filter((a) => a.kind === 'house')[0] ? item.GeoObject.metaDataProperty.GeocoderMetaData.Address.Components.filter((a) => a.kind === 'house')[0].name : ''),
               title: item.GeoObject.metaDataProperty.GeocoderMetaData.text,
             })),
           });
@@ -38,8 +41,7 @@ class Register extends Component {
   }
 
   handleResultSelect = (e, { result }) => {
-    this.setState({ address: result.title });
-    console.log(result);
+    this.setState({ address: result, value: result.title });
   }
 
   toggleFermer = () => this.setState((prevState) => ({ fermer: !prevState.fermer }))
@@ -62,33 +64,37 @@ class Register extends Component {
     } = this.state;
     const myHeaders = new Headers();
     myHeaders.append('Content-Type', 'application/json');
+    myHeaders.append('Token', 'AqgeOIM0Hbbm99KLKcdUzyh0TIifgQgbVK4dHbOZm4jiaS_--IrK-vkXHZTDW6Tj6k-brynmTQhjUFVk1UkSGQK9Tsutu9aH-r_s_sSn5h9-jT3KLRQtUeT5HVyXVdYP6ProNPKiEMzeBo_t87Bqf2jk_Tl4sS902qANfI2TlR3qaOqT6y6KgzPIv8kc');
 
-    let raw = {
-      farmer: false, email, password, confirm_password: 'Pas$word1', firstname: name, lastname: '', patronymic: '', number_phone: phone,
+    const raw = {
+      farmer: false, email, password, confirm_password: password, firstname: name, lastname: '', patronymic: '', number_phone: phone,
     };
 
     if (fermer) {
       raw.farmer = true;
       raw.farmerData = {
         inn,
-        addressData: {
-          
-        }
-      }
+        addressData: address,
+      };
     }
-
-    
 
     const requestOptions = {
       method: 'POST',
       headers: myHeaders,
-      body: raw,
+      body: JSON.stringify(raw),
       redirect: 'follow',
     };
 
-    fetch('46.236.142.180:5000/registration', requestOptions)
-      .then((response) => response.text())
-      .then((result) => console.log(result))
+    fetch('https://cf931bb1.ngrok.io/registration', requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.messageError) {
+          alert(result.messageError);
+        } else {
+          alert('Успешно!');
+          window.location.href = '/login';
+        }
+      })
       .catch((error) => console.log('error', error));
   }
 
@@ -103,6 +109,7 @@ class Register extends Component {
       phone,
       password,
       inn,
+      value,
     } = this.state;
     console.log(this.state);
     return (
@@ -140,11 +147,12 @@ class Register extends Component {
                   loading={isLoading}
                   onResultSelect={this.handleResultSelect}
                   onSearchChange={this.maps}
-                  value={address}
+                  value={value}
                   results={list}
                 />
               </div>
               <Button
+                onClick={this.submit}
                 disabled={
                   !name
                   || !email

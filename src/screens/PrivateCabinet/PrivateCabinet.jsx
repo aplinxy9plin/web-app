@@ -6,12 +6,13 @@ import {
 // components
 import UserData from '../../components/UserData/UserData';
 import UserAddress from '../../components/UserAddress/UserAddress';
+import Add from '../Add/Add';
 
 export class PrivateCabinet extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: 'address',
+      activeTab: localStorage.getItem('grofor_role') === '1' ? 'add' : 'profile',
       tabs: [
         {
           name: 'profile',
@@ -20,6 +21,10 @@ export class PrivateCabinet extends Component {
         {
           name: 'address',
           component: <UserAddress />,
+        },
+        {
+          name: 'add',
+          component: <Add />,
         },
       ],
     };
@@ -43,6 +48,13 @@ export class PrivateCabinet extends Component {
             </Grid.Column>
             <Grid.Column width={4}>
               <Menu vertical>
+                {localStorage.getItem('grofor_role') === '1' && (
+                <Menu.Item
+                  name="Добавить"
+                  active={activeTab === 'add'}
+                  onClick={() => this.setState({ activeTab: 'add' })}
+                />
+                )}
                 <Menu.Item
                   name="Мой профиль"
                   active={activeTab === 'profile'}

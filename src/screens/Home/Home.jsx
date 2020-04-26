@@ -16,7 +16,7 @@ export class Home extends Component {
   render() {
     return (
       <Container style={{ marginTop: '30px' }}>
-        <Header as="h1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Possimus amet voluptas ipsum nihil corrupti eum sapiente est vitae repellat facere voluptatibus, eaque sed illo consequatur ut rerum quisquam harum in.</Header>
+        <Header as="h1"> Свежие, натуральные, экологические продукты от городских фермеров, рядом с вами. </Header>
         <Search
           fluid
           input={{ fluid: true }}

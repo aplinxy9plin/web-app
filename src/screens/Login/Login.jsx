@@ -20,6 +20,35 @@ class Register extends Component {
     });
   }
 
+  submit = () => {
+    const myHeaders = new Headers();
+    myHeaders.append('Token', 'AqgeOIM0Hbbm99KLKcdUzyh0TIifgQgbVK4dHbOZm4jiaS_--IrK-vkXHZTDW6Tj6k-brynmTQhjUFVk1UkSGQK9Tsutu9aH-r_s_sSn5h9-jT3KLRQtUeT5HVyXVdYP6ProNPKiEMzeBo_t87Bqf2jk_Tl4sS902qANfI2TlR3qaOqT6y6KgzPIv8kc');
+    myHeaders.append('Content-Type', 'application/json');
+
+    const raw = JSON.stringify({ email: this.state.email, password: this.state.password });
+
+    const requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: raw,
+      redirect: 'follow',
+    };
+
+    fetch('https://cf931bb1.ngrok.io/auth', requestOptions)
+      .then((response) => response.json())
+      .then((result) => {
+        if (result.UserToken) {
+          localStorage.setItem('grofor_token', result.UserToken);
+          localStorage.setItem('grofor_role', result.role);
+          alert('Успешно');
+          window.location.href = '/profile';
+        } else {
+          alert('Неверные данные.');
+        }
+      })
+      .catch((error) => console.log('error', error));
+  }
+
   render() {
     const {
       email,
@@ -52,9 +81,10 @@ class Register extends Component {
                 }
                 color="teal"
                 fluid
+                onClick={this.submit}
                 size="large"
               >
-                Регистрация
+                Вход
               </Button>
             </Segment>
           </Form>

@@ -7,11 +7,11 @@ import PropTypes from 'prop-types';
 // eslint-disable-next-line import/no-cycle
 import Item from '../Item/Item';
 
-const ItemModal = ({ open, closeItem }) => (
+const ItemModal = ({ open, closeItem, item }) => (
   <Modal open={open} onClose={closeItem}>
     <Modal.Content>
       <Modal.Description>
-        <Item />
+        <Item item={item} />
       </Modal.Description>
     </Modal.Content>
   </Modal>
@@ -20,6 +20,7 @@ const ItemModal = ({ open, closeItem }) => (
 ItemModal.propTypes = {
   open: PropTypes.bool.isRequired,
   closeItem: PropTypes.func.isRequired,
+  item: PropTypes.object,
 };
 
 export default ItemModal;

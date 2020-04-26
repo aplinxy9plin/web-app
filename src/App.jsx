@@ -14,6 +14,7 @@ import PrivateCabinet from './screens/PrivateCabinet/PrivateCabinet';
 
 // components
 import Navbar from './components/Navbar/Navbar';
+import Basket from './components/Basket/Basket';
 
 export class App extends React.Component {
   constructor(props) {
@@ -30,9 +31,9 @@ export class App extends React.Component {
           <Navbar
             links={
               [
-                { link: '/map', name: 'Map' },
-                { link: '/shops', name: 'Shops' },
-                { link: '/forum', name: 'Forum' },
+                { link: '/map', name: 'Карта' },
+                { link: '/shops', name: 'Магазин' },
+                { link: '/forum', name: 'Форум' },
               ]
             }
           />
@@ -48,6 +49,9 @@ export class App extends React.Component {
             </Route>
             <Route path="/profile">
               <PrivateCabinet />
+            </Route>
+            <Route path="/basket">
+              <Basket />
             </Route>
             <Route exact path="/">
               <Home />

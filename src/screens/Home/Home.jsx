@@ -5,6 +5,11 @@ import {
 import { Link } from 'react-router-dom';
 import Map from '../../components/GoogleMap/GoogleMap';
 
+import people1 from './YvxreYTf9wY.jpg';
+import people2 from './93640379_2350036188433313_8842286501093062177_n.jpg';
+import people3 from './91376739_906582623106310_4991273595571685200_n.jpg';
+import people4 from './94675382_703035880506499_8935005580747415760_n.jpg';
+
 export class Home extends Component {
   constructor(props) {
     super(props);
@@ -30,81 +35,45 @@ export class Home extends Component {
           <Grid.Row widths={12}>
             <Grid.Column width={4}>
               <Card>
-                <Image src="https://react.semantic-ui.com/images/avatar/large/matthew.png" wrapped ui={false} />
+                <Image src={people1} wrapped ui={false} />
                 <Card.Content>
-                  <Card.Header>Matthew</Card.Header>
+                  <Card.Header>Кирилл Орлов</Card.Header>
                   <Card.Meta>
-                    <span className="date">Joined in 2015</span>
+                    <span className="date">Клубника</span>
                   </Card.Meta>
-                  <Card.Description>
-                    Matthew is a musician living in Nashville.
-                  </Card.Description>
-                </Card.Content>
-                <Card.Content extra>
-                  <Link to="profile">
-                    <Icon name="user" />
-                    Посмотреть профиль
-                  </Link>
                 </Card.Content>
               </Card>
             </Grid.Column>
             <Grid.Column width={4}>
               <Card>
-                <Image src="https://react.semantic-ui.com/images/avatar/large/matthew.png" wrapped ui={false} />
+                <Image src={people2} wrapped ui={false} />
                 <Card.Content>
-                  <Card.Header>Matthew</Card.Header>
+                  <Card.Header>Воробьев Иван</Card.Header>
                   <Card.Meta>
-                    <span className="date">Joined in 2015</span>
+                    <span className="date">Микрозелень</span>
                   </Card.Meta>
-                  <Card.Description>
-                    Matthew is a musician living in Nashville.
-                  </Card.Description>
-                </Card.Content>
-                <Card.Content extra>
-                  <Link to="profile">
-                    <Icon name="user" />
-                    Посмотреть профиль
-                  </Link>
                 </Card.Content>
               </Card>
             </Grid.Column>
             <Grid.Column width={4}>
               <Card>
-                <Image src="https://react.semantic-ui.com/images/avatar/large/matthew.png" wrapped ui={false} />
+                <Image src={people3} wrapped ui={false} />
                 <Card.Content>
-                  <Card.Header>Matthew</Card.Header>
+                  <Card.Header>Света Николаева</Card.Header>
                   <Card.Meta>
-                    <span className="date">Joined in 2015</span>
+                    <span className="date">Микрозелень</span>
                   </Card.Meta>
-                  <Card.Description>
-                    Matthew is a musician living in Nashville.
-                  </Card.Description>
-                </Card.Content>
-                <Card.Content extra>
-                  <Link to="profile">
-                    <Icon name="user" />
-                    Посмотреть профиль
-                  </Link>
                 </Card.Content>
               </Card>
             </Grid.Column>
             <Grid.Column width={4}>
               <Card>
-                <Image src="https://react.semantic-ui.com/images/avatar/large/matthew.png" wrapped ui={false} />
+                <Image src={people4} wrapped ui={false} />
                 <Card.Content>
-                  <Card.Header>Matthew</Card.Header>
+                  <Card.Header>Гоша</Card.Header>
                   <Card.Meta>
-                    <span className="date">Joined in 2015</span>
+                    <span className="date">Лечебные травы</span>
                   </Card.Meta>
-                  <Card.Description>
-                    Matthew is a musician living in Nashville.
-                  </Card.Description>
-                </Card.Content>
-                <Card.Content extra>
-                  <Link to="profile">
-                    <Icon name="user" />
-                    Посмотреть профиль
-                  </Link>
                 </Card.Content>
               </Card>
             </Grid.Column>
